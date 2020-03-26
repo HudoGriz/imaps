@@ -2,7 +2,7 @@ import os
 import re
 
 
-class FileParse:
+class FileParser:
 
     def __init__(self, filename):
         self.fname = filename
@@ -12,15 +12,15 @@ class FileParse:
 
     def parse(self):
         with open(self.fname, 'r') as file:
-            stri = file.read().replace('\n', '')
-        return stri
+            string = file.read()
+        return string
 
     def get_line(self, n):
-        fp = open(self.fname)
-        for i, line in enumerate(fp):
-            if i == n:
-                return line
-        fp.close()
+        with open(self.fname, 'r') as file:
+            for i, line in enumerate(file):
+                if i == n:
+                    return line
+                    break
 
     def get_numbers_in_line(self, n):
         line = self.get_line(n)
